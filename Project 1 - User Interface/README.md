@@ -14,18 +14,19 @@ args[1]="-ael"
 args[2]=NULL
 ```
 
-    can be executed by execvp(args[0], args). The program also checks for certain operators such as redirection (> or <), pipe (|), or background (&), and deals with them accordingly.
+can be executed by execvp(args[0], args). The program also checks for certain operators such as redirection (> or <), pipe (|), or background (&), and deals with them accordingly.
 
 **Part 2 - Creating a history feature**
 
 • A command implemented into the CLI is the history command, _!!_, which executes whatever command was used previously. For example,
+
 
 ```
 ls -l
 !!
 ```
 
-    will execute ```ls -l``` twice. A simple failsafe is added if there are no commands in the current history.
+will execute ```ls -l``` twice. A simple failsafe is added if there are no commands in the current history.
 
 **Part 3 - Redirecting input and output**
 
@@ -35,12 +36,12 @@ ls -l
 ls > out.txt
 ```
 
-    the output of the ```ls``` command will be outputted to the file ```out.txt```. Similarly, input can be redirected as well. For example, if the user enters
+the output of the ```ls``` command will be outputted to the file ```out.txt```. Similarly, input can be redirected as well. For example, if the user enters
 
 ```
 sort < in.txt
 ```
-    the file ```in.txt``` will serve as the input for the ```sort``` command.
+the file ```in.txt``` will serve as the input for the ```sort``` command.
 
 • This part of the program does not account for both operators at once and only assumes that each user command will contain either one input or output redirection and not both.
 
@@ -52,7 +53,7 @@ sort < in.txt
 ls -l | less
 ```
 
-    has the output of the command ```ls−l``` serve as the input to the ```less``` command. Both the ```ls``` and ```less``` commands will run as separate processes and will communicate using the UNIX pipe() function.
+has the output of the command ```ls−l``` serve as the input to the ```less``` command. Both the ```ls``` and ```less``` commands will run as separate processes and will communicate using the UNIX pipe() function.
 
 • This function is implemented by having a parent process create a child process to execute the first command, and having that child process be the parent of another child for the second command.
 
